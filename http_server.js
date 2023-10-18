@@ -6,7 +6,7 @@ const adapter = new fs('db.json');
 const db = low(adapter);
 const cors = require('cors');
 const { faker } = require('@faker-js/faker');
-
+const PORT = process.env.PORT || 3000;
 // allow cross-origin resource sharing (CORS)
 app.use(cors());
 
@@ -21,8 +21,6 @@ app.use(express.static('public'));
 
 // init the data store
 db.defaults({ users: [] }).write();
-
-let port = process.env.PORT || 3000;
 
 // return all users
 app.get('/data', function (req, res) {
@@ -51,6 +49,6 @@ app.post('/add', function (req, res) {
 
 // start server
 // -----------------------
-app.listen(port, function () {
-    console.log(`Running on port ${port}`);
+app.listen(PORT, function () {
+    console.log(`Running on port ${PORT}!`);
 });
